@@ -1,0 +1,181 @@
+{
+    "cards": [
+        {
+            "_id": 1,
+            "name": "Sales",
+            "icon": "bi bi-cart",
+            "amount": 145,
+            "percentage": 0.12,
+            "active": true
+        },
+        {
+            "_id": 2,
+            "name": "Revenue",
+            "icon": "bi bi-currency-dollar",
+            "amount": 3246,
+            "percentage": 0.02,
+            "active": false
+        },
+        {
+            "_id": 3,
+            "name": "Customers",
+            "icon": "bi bi-people",
+            "amount": 1244,
+            "percentage": -0.11,
+            "active": false
+        }
+    ],
+    "news": [
+        {
+            "_id": 1,
+            "img": "https://th.bing.com/th/id/OIP.rl-Vq9TXNeDkdtF-RRI5hgHaE7?w=313&h=180&c=7&r=0&o=5&pid=1.7",
+            "title": "News 1",
+            "subtitle": "The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value",
+            "category": "Sales"
+        },
+        {
+            "_id": 2,
+            "img": "https://th.bing.com/th/id/OIP.rl-Vq9TXNeDkdtF-RRI5hgHaE7?w=313&h=180&c=7&r=0&o=5&pid=1.7",
+            "title": "News 2",
+            "subtitle": "The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value",
+            "category": "Any"
+        },
+        {
+            "_id": 3,
+            "img": "https://th.bing.com/th/id/OIP.rl-Vq9TXNeDkdtF-RRI5hgHaE7?w=313&h=180&c=7&r=0&o=5&pid=1.7",
+            "title": "News 3",
+            "subtitle": "The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value",
+            "category": "Any"
+        },
+        {
+            "_id": 4,
+            "img": "https://th.bing.com/th/id/OIP.rl-Vq9TXNeDkdtF-RRI5hgHaE7?w=313&h=180&c=7&r=0&o=5&pid=1.7",
+            "title": "News 4",
+            "subtitle": "The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value",
+            "category": "Sales"
+        },
+        {
+            "_id": 5,
+            "img": "https://th.bing.com/th/id/OIP.rl-Vq9TXNeDkdtF-RRI5hgHaE7?w=313&h=180&c=7&r=0&o=5&pid=1.7",
+            "title": "News 5",
+            "subtitle": "The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value",
+            "category": "Sales"
+        }
+    ],
+    "topselling": [
+        {
+            "_id": 1,
+            "preview": "https://th.bing.com/th/id/OIP.rl-Vq9TXNeDkdtF-RRI5hgHaE7?w=313&h=180&c=7&r=0&o=5&pid=1.7",
+            "name": "Product 1",
+            "price": 12,
+            "sold": 123
+        },
+        {
+            "_id": 2,
+            "preview": "https://th.bing.com/th/id/OIP.rl-Vq9TXNeDkdtF-RRI5hgHaE7?w=313&h=180&c=7&r=0&o=5&pid=1.7",
+            "name": "Product 2",
+            "price": 46,
+            "sold": 100
+        },
+        {
+            "_id": 3,
+            "preview": "https://th.bing.com/th/id/OIP.rl-Vq9TXNeDkdtF-RRI5hgHaE7?w=313&h=180&c=7&r=0&o=5&pid=1.7",
+            "name": "Product 3",
+            "price": 59,
+            "sold": 90
+        },
+        {
+            "_id": 4,
+            "preview": "https://th.bing.com/th/id/OIP.rl-Vq9TXNeDkdtF-RRI5hgHaE7?w=313&h=180&c=7&r=0&o=5&pid=1.7",
+            "name": "Product 4",
+            "price": 63,
+            "sold": 74
+        },
+        {
+            "_id": 5,
+            "preview": "https://th.bing.com/th/id/OIP.rl-Vq9TXNeDkdtF-RRI5hgHaE7?w=313&h=180&c=7&r=0&o=5&pid=1.7",
+            "name": "Product 5",
+            "price": 79,
+            "sold": 50
+        }
+    ],
+    "recentsales": [
+        {
+            "_id": 1,
+            "number": "#2457",
+            "customer": "Brandon Jacob",
+            "product": "Product 1",
+            "price": 64,
+            "status": "Approved"
+        },
+        {
+            "_id": 2,
+            "number": "#2147",
+            "customer": "Chi Do",
+            "product": "Product 2",
+            "price": 50,
+            "status": "Pending"
+        },
+        {
+            "_id": 3,
+            "number": "#2049",
+            "customer": "Minh Chi",
+            "product": "Product 3",
+            "price": 120,
+            "status": "Approved"
+        },
+        {
+            "_id": 4,
+            "number": "#3049",
+            "customer": "Linh Mochi",
+            "product": "Product 4",
+            "price": 137,
+            "status": "Rejected"
+        },
+        {
+            "_id": 5,
+            "number": "#3209",
+            "customer": "Chi Thanh",
+            "product": "Product 5",
+            "price": 89,
+            "status": "Approved"
+        }
+    ],
+    "recentactivity": [
+        {
+            "_id": 1,
+            "time": "32 min",
+            "color": "text-success",
+            "content": "Brandon Jacob has just purchased Product 1",
+            "highlight": "Product 1"
+        },
+        {
+            "_id": 2,
+            "time": "42 min",
+            "color": "text-danger",
+            "content": "Brandon Jacob has just purchased Product 2",
+            "highlight": ""
+        },
+        {
+            "_id": 3,
+            "time": "1 hour",
+            "color": "text-warning",
+            "content": "Brandon Jacob has just purchased Product 3",
+            "highlight": "Product 3"
+        },
+        {
+            "_id": 4,
+            "time": "2 hours",
+            "color": "text-info",
+            "content": "Brandon Jacob has just purchased Product 4",
+            "highlight": "Product 4"
+        },
+        {
+            "_id": 1,
+            "time": "2 days",
+            "color": "text-warning",
+            "content": "Chi Do has just purchased Product 1",
+            "highlight": ""
+        }
+    ]
+}

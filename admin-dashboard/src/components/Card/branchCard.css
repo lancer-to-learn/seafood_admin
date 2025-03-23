@@ -1,0 +1,73 @@
+.card {
+    transition: transform 0.2s ease-in-out;
+    border-radius: 8px;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .card-title {
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  .branch-card {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 8px;
+    position: relative;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .branch-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .card-icons {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+  
+  .branch-card:hover .card-icons {
+    opacity: 1;
+  }
+  
+  .branch-card:hover > .select-icon {
+    opacity: 1;
+  }
+  
+  .edit-icon,
+  .delete-icon {
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .edit-icon:hover {
+    color: #007bff;
+  }
+  
+  .delete-icon:hover {
+    color: #dc3545;
+  }
+  
+  .select-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0;
+  }
+  
+  .selected {
+    transform: scale(1.05);
+  }
+  
+  .selected > .select-icon {
+    opacity: 1;
+  }
