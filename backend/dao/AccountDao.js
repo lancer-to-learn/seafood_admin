@@ -9,6 +9,20 @@ class AccountDao {
         }
     }
 
+    async getAdminAccounts() {
+        try {
+            const adminAccounts = await Account.findAll({
+                attributes: ['username', 'email'],
+                where: {
+                    role: ['admin', 'branch_admin']
+                }
+            });
+            return adminAccounts;
+        } catch (error) {
+            throw new Error(`Unable to retrieve admin accounts: ${error.message}`);
+        }
+    }
+
     async getAccountById(accountId) {
         try {
             const account = await Account.findByPk(accountId);

@@ -53,8 +53,6 @@ export const AuthProvider = ({ children }) => {
   const onLoginSuccess = (user, accessToken, refreshToken) => {
     setUser(user);
     setIsAuthenticated(true);
-    Cookies.set("accessToken", accessToken, { expires: 30 }); // 10 minutes
-    Cookies.set("refreshToken", refreshToken, { expires: 30 }); // 30 days
   };
 
   const logout = () => {

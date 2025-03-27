@@ -4,7 +4,8 @@ import PageTitle from "../../components/PageTitle/PageTitle";
 import BranchCard from "../../components/Card/BranchCard";
 import BranchEditor from "../../components/Form/BranchEditor";
 import { Toast, ToastContainer } from "react-bootstrap";
-import { getAllBranches, createBranch, editingBranch } from "../../services/branchServices.js";
+import { getAllBranches, createBranch, updateBranch } from "../../services/branchServices.js";
+import BranchEditors from "../../components/Form/BranchEditors.jsx";
 
 const BranchList = () => {
   const [branches, setBranches] = useState(null);
@@ -70,7 +71,7 @@ const BranchList = () => {
 
   const addOrUpdateBranch = (branch) => {
     if (branch.id) {
-      editingBranch(branch).then((res) => {
+      updateBranch(branch.id, branch).then((res) => {
         if (res.status === 200) {
           setBranches(branches.map((b) => (b.id === branch.id ? branch : b)));
           showToast("Chi nhánh đã được cập nhật thành công!", "success");
@@ -93,7 +94,9 @@ const BranchList = () => {
   };
 
   const fetchData = () => {
-    getAllBranches().then(setBranches).catch(console.error);
+    getAllBranches().then(res => {
+      setBranches(res.data);
+    }).catch(console.error);
   };
 
   useEffect(() => {

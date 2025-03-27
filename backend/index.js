@@ -4,6 +4,7 @@ const { sequelize, connectDB } = require("./config/database");
 const { Account } = require("./models");
 const authRoutes = require("./routes/auth");
 const branchRoutes = require("./routes/branch");
+const accountRoutes = require("./routes/account");
 const { isAdmin } = require("./middlewares/auth_middleware.js");
 
 const app = express();
@@ -28,6 +29,7 @@ connectDB().then(() => {
 const PORT = process.env.PORT || 5000;
 app.use("/api/auth", authRoutes);
 app.use("/api/branch", isAdmin, branchRoutes);
+app.use("/api/account", isAdmin, accountRoutes);
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
