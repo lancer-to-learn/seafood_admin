@@ -1,10 +1,10 @@
-const { Branch } = require("../models");
+const { Branch, Account } = require("../models");
 
 class BranchDao {
     async createBranch(branch) {
         try {
             const newBranch = await Branch.create(branch);
-            return newBranch;
+            return await this.getBranchById(newBranch.id);
         } catch (error) {
             throw new Error(`Unable to create branch: ${error.message}`);
         }
@@ -12,7 +12,15 @@ class BranchDao {
 
     async getBranchById(branchId) {
         try {
-            const branch = await Branch.findByPk(branchId);
+            const branch = await Branch.findByPk(branchId, {
+                include: [
+                    {
+                        model: Account,
+                        as: "managerData", // Phải khớp với alias trong model
+                        attributes: ["id", "username", "email"], // Chỉ lấy những gì cần thiết
+                    },
+                ],
+            });
             if (!branch) {
                 throw new Error('Branch not found');
             }
@@ -24,7 +32,13 @@ class BranchDao {
 
     async getBranchByName(name) {
         try {
-            const branch = await Branch.findOne({ where: { name } });
+            const branch = await Branch.findOne({ where: { name }, include: [
+                {
+                  model: Account,
+                  as: "managerData", // Alias để lấy thông tin đầy đủ của manager
+                  attributes: ["id", "username", "email"], // Chỉ lấy các trường cần thiết
+                },
+              ], });
             if (!branch) {
                 return null;
             }
@@ -36,7 +50,15 @@ class BranchDao {
 
     async getAllBranches() {
         try {
-            const branches = await Branch.findAll();
+            const branches = await Branch.findAll({
+                include: [
+                  {
+                    model: Account,
+                    as: "managerData",
+                    attributes: ["id", "username", "email"],
+                  },
+                ],
+              });
             return branches;
         } catch (error) {
             throw new Error(`Unable to retrieve branches: ${error.message}`);

@@ -4,8 +4,7 @@ import PageTitle from "../../components/PageTitle/PageTitle";
 import BranchCard from "../../components/Card/BranchCard";
 import BranchEditor from "../../components/Form/BranchEditor";
 import { Toast, ToastContainer } from "react-bootstrap";
-import { getAllBranches, createBranch, updateBranch } from "../../services/branchServices.js";
-import BranchEditors from "../../components/Form/BranchEditors.jsx";
+import { getAllBranches, createBranch, updateBranch, deleteBranch } from "../../services/branchServices.js";
 
 const BranchList = () => {
   const [branches, setBranches] = useState(null);
@@ -51,11 +50,17 @@ const BranchList = () => {
     setShowConfirm(true);
   };
 
-  const deleteBranch = () => {
-    setBranches(branches.filter((branch) => branch.id !== branchToDelete));
+  const handleDelete = () => {
+    deleteBranch(branchToDelete).then((res) => {
+      if (res.status === 200) {
+        setBranches(branches.filter((b) => (b.id !== branchToDelete)));
+        showToast("Chi nhánh đã được xóa thành công!", "success");
+      } else {
+        showToast("Có lỗi xảy ra, vui lòng thử lại sau!", "error");
+      }
+    }).catch(e => showToast("Có lỗi xảy ra, vui lòng thử lại sau!", e.message));
     setShowConfirm(false);
     setBranchToDelete(null);
-    showToast("Chi nhánh đã được xóa thành công!", "success");
   };
 
   const confirmDeleteSelected = () => {
@@ -81,13 +86,13 @@ const BranchList = () => {
       }).catch(showToast("Có lỗi xảy ra, vui lòng thử lại sau!", "error"));
     } else {
       createBranch(branch).then((res) => {
-        if (res.status === 200) {
-          setBranches(branches.map((b) => (b.id === branch.id ? branch : b)));
+        if (res.status === 201) {
+            setBranches([...branches, res.data.data]);
           showToast("Chi nhánh mới đã được thêm thành công!", "success");
         } else {
           showToast("Có lỗi xảy ra, vui lòng thử lại sau!", "error");
         }
-      }).catch(showToast("Có lỗi xảy ra, vui lòng thử lại sau!", "error"));
+      }).catch(e => showToast("Có lỗi xảy ra, vui lòng thử lại sau! Error: ", e.message));
     }
     setShowForm(false);
     setEditingBranch(null);
@@ -191,7 +196,7 @@ const BranchList = () => {
               >
                 Hủy
               </button>
-              <button className="btn btn-danger" onClick={deleteBranch}>
+              <button className="btn btn-danger" onClick={handleDelete}>
                 Xóa
               </button>
             </div>

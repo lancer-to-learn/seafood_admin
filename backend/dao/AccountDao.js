@@ -12,7 +12,7 @@ class AccountDao {
     async getAdminAccounts() {
         try {
             const adminAccounts = await Account.findAll({
-                attributes: ['username', 'email'],
+                attributes: ['id', 'username', 'email'],
                 where: {
                     role: ['admin', 'branch_admin']
                 }

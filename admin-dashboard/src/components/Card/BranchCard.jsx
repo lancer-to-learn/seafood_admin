@@ -20,7 +20,7 @@ function BranchCard({ branch, isSelected, onSelect, onEdit, onDelete }) {
           </p>
           <p className="card-text">
             <i className="bx bx-user"></i> <strong>Người quản lý:</strong>{" "}
-            {branch.manager}
+            {branch.managerData.username}
           </p>
         </div>
         <div className="card-icons">

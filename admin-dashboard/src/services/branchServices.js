@@ -30,7 +30,7 @@ const getBranchById = async (id) => {
 const createBranch = async (branchData) => {
     try {
         const response = await axios.post(`${API_URL}/create`, branchData, getAuthHeaders());
-        return response.data;
+        return response;
     } catch (error) {
         console.error("Error creating branch:", error);
         throw error;
@@ -50,7 +50,7 @@ const updateBranch = async (id, branchData) => {
 const deleteBranch = async (id) => {
     try {
         const response = await axios.delete(`${API_URL}/delete/${id}`, getAuthHeaders());
-        return response.data;
+        return response;
     } catch (error) {
         console.error(`Error deleting branch ${id}:`, error);
         throw error;

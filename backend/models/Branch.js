@@ -55,6 +55,7 @@ const Branch = sequelize.define("Branch", {
 
 // Define the association
 Branch.belongsTo(Account, { 
+  as: "managerData",
   foreignKey: {
     name: "manager",
     allowNull: true,
