@@ -58,7 +58,7 @@ Branch.belongsTo(Account, {
   as: "managerData",
   foreignKey: {
     name: "manager",
-    allowNull: true,
+    allowNull: false,
     onDelete: "SET NULL",
     references: {
       model: Account,

@@ -101,10 +101,34 @@ const deleteBranch = async (req, res) => {
     }
 };
 
+// Delete multiple branches by IDs
+const deleteMultipleBranches = async (req, res) => {
+    try {
+        const { ids } = req.body; // Expecting an array of branch IDs in the request body
+        if (!Array.isArray(ids) || ids.length === 0) {
+            return res.status(400).json({
+                success: false,
+                message: 'Invalid or empty IDs array',
+            });
+        }
+        const result = await BranchDao.deleteMultipleBranches(ids);
+        res.status(200).json({
+            success: true,
+            message: `${result} branches deleted successfully`,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Server Error: ' + e.message,
+        });
+    }
+};
+
 module.exports = {
     getAllBranches,
     getBranchById,
     createBranch,
     updateBranch,
     deleteBranch,
+    deleteMultipleBranches,
 };

@@ -40,7 +40,7 @@ const createBranch = async (branchData) => {
 const updateBranch = async (id, branchData) => {
     try {
         const response = await axios.put(`${API_URL}/update/${id}`, branchData, getAuthHeaders());
-        return response.data;
+        return response;
     } catch (error) {
         console.error(`Error updating branch ${id}:`, error);
         throw error;
@@ -57,10 +57,21 @@ const deleteBranch = async (id) => {
     }
 };
 
+const deleteMultipleBranches = async (ids) => {
+    try {
+        const response = await axios.post(`${API_URL}/deleteMultiple`, { ids }, getAuthHeaders());
+        return response;
+    } catch (error) {
+        console.error("Error deleting multiple branches:", error);
+        throw error;
+    }
+};
+
 export {
     getAllBranches,
     getBranchById,
     createBranch,
     updateBranch,
     deleteBranch,
+    deleteMultipleBranches,
 };

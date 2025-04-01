@@ -4,7 +4,7 @@ import PageTitle from "../../components/PageTitle/PageTitle";
 import BranchCard from "../../components/Card/BranchCard";
 import BranchEditor from "../../components/Form/BranchEditor";
 import { Toast, ToastContainer } from "react-bootstrap";
-import { getAllBranches, createBranch, updateBranch, deleteBranch } from "../../services/branchServices.js";
+import { getAllBranches, createBranch, updateBranch, deleteBranch, deleteMultipleBranches } from "../../services/branchServices.js";
 
 const BranchList = () => {
   const [branches, setBranches] = useState(null);
@@ -58,7 +58,10 @@ const BranchList = () => {
       } else {
         showToast("Có lỗi xảy ra, vui lòng thử lại sau!", "error");
       }
-    }).catch(e => showToast("Có lỗi xảy ra, vui lòng thử lại sau!", e.message));
+    }).catch(e => {
+      console.error(e);
+      showToast("Có lỗi xảy ra, vui lòng thử lại sau!", "error");
+    });
     setShowConfirm(false);
     setBranchToDelete(null);
   };
@@ -68,17 +71,27 @@ const BranchList = () => {
   };
 
   const deleteSelected = () => {
-    setBranches(branches.filter((branch) => !selected.includes(branch.id)));
+    deleteMultipleBranches(selected).then((res) => {
+      if (res.status === 200) {
+        setBranches(branches.filter((branch) => !selected.includes(branch.id)));
+        showToast(res.data.message, "success");
+      } else {
+        showToast("Có lỗi xảy ra, vui lòng thử lại sau!", "error");
+      }
+    }).catch(e => {
+      console.error(e);
+      showToast("Có lỗi xảy ra, vui lòng thử lại sau!", "error");
+    });
     setSelected([]);
     setShowConfirmMultiple(false);
-    showToast("Các chi nhánh đã được xóa thành công!", "success");
   };
 
   const addOrUpdateBranch = (branch) => {
     if (branch.id) {
       updateBranch(branch.id, branch).then((res) => {
         if (res.status === 200) {
-          setBranches(branches.map((b) => (b.id === branch.id ? branch : b)));
+          const updatedBranch = res.data.data;
+          setBranches(branches.map((b) => (b.id === branch.id ? updatedBranch : b)));
           showToast("Chi nhánh đã được cập nhật thành công!", "success");
         } else {
           showToast("Có lỗi xảy ra, vui lòng thử lại sau!", "error");

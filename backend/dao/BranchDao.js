@@ -92,6 +92,20 @@ class BranchDao {
             throw new Error(`Unable to delete branch: ${error.message}`);
         }
     }
+
+    async deleteMultipleBranches(branchIds) {
+        try {
+            const deletedCount = await Branch.destroy({
+                where: { id: branchIds }
+            });
+            if (deletedCount === 0) {
+                throw new Error('No branches found to delete');
+            }
+            return deletedCount;
+        } catch (error) {
+            throw new Error(`Unable to delete branches: ${error.message}`);
+        }
+    }
 }
 
 module.exports = new BranchDao();
