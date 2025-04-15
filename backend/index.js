@@ -5,6 +5,7 @@ const { Account } = require("./models");
 const authRoutes = require("./routes/auth");
 const branchRoutes = require("./routes/branch");
 const accountRoutes = require("./routes/account");
+const productRoutes = require("./routes/product");
 const { isAdmin } = require("./middlewares/auth_middleware.js");
 
 const app = express();
@@ -30,6 +31,7 @@ const PORT = process.env.PORT || 5000;
 app.use("/api/auth", authRoutes);
 app.use("/api/branch", isAdmin, branchRoutes);
 app.use("/api/account", isAdmin, accountRoutes);
+app.use("/api/product", isAdmin, productRoutes);
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });

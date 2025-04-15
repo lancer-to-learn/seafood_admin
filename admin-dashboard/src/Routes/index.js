@@ -1,6 +1,7 @@
 import BranchList from "../Pages/Branch/BranchList";
 import LoginPage from "../Pages/Login/LoginPage";
 import Main from "../Pages/Main/Main";
+import ProductEditor from "../Pages/Product/ProductEditor";
 
 const routes = [
     {
@@ -26,6 +27,21 @@ const routes = [
     {
         path: '/branch-list',
         page: BranchList,
+        isHideHeader: false
+    },
+    {
+        path: '/product-list',
+        page: BranchList,
+        isHideHeader: false
+    },
+    {
+        path: '/add-product',
+        page: ProductEditor,
+        isHideHeader: false
+    },
+    {
+        path: '/edit-product',
+        page: ProductEditor,
         isHideHeader: false
     }
 ]
