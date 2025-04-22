@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "npx ts-node src/index.ts",
     "test": "npm run test"
   },
   "author": "chido",
@@ -25,5 +26,12 @@
     "sequelize": "^6.37.5",
     "sequelize-cli": "^6.6.2",
     "twilio": "^5.4.4"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }

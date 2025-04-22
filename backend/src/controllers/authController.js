@@ -4,7 +4,6 @@ const nodemailer = require("nodemailer");
 const twilio = require("twilio");
 const { Account } = require("../models");
 const randToken = require('rand-token');
-const { sendOTPWithFirebase } = require("./firebase");
 const AccountDao = require("../dao/AccountDao");
 const { generateToken, decodeToken } = require("../utils/common");
 const { sendSMS } = require("./vonage");
@@ -42,18 +41,6 @@ const sendOTP = async (phone, otp) => {
     from: process.env.TWILIO_PHONE_NUMBER,
     to: phone,
   });
-};
-
-const sendOTPViaFirebase = async (req, res) => {
-  try {
-    const { phone } = req.body;
-    if (!phone) return res.status(400).json({ message: "Số điện thoại không hợp lệ" });
-
-    const session = await sendOTPWithFirebase(phone);
-    res.json({ message: "OTP đã gửi thành công", session });
-  } catch (error) {
-    res.status(500).json({ message: "Lỗi gửi OTP", error: error.message });
-  }
 };
 
 const verifyOTP = async (req, res) => {
@@ -147,17 +134,6 @@ const verifyByPhone = async (req, res) => {
     res.status(200).json({ message: "Xác minh số điện thoại thành công, bạn có thể đăng nhập." });
   } catch (error) {
     res.status(500).json({ message: "Lỗi server", error: error.message });
-  }
-};
-
-const verifyOTPWithFirebase = async (phoneNumber, otp) => {
-  try {
-    const user = await admin.auth().verifySessionCookie(otp, true);
-    console.log(`OTP hợp lệ cho số ${phoneNumber}`);
-    return user;
-  } catch (error) {
-    console.error("OTP không hợp lệ:", error.message);
-    throw new Error("OTP không hợp lệ hoặc đã hết hạn");
   }
 };
 
@@ -278,7 +254,5 @@ module.exports = {
   login,
   sendVerificationEmail,
   sendOTP,
-  sendOTPViaFirebase,
-  verifyOTPWithFirebase,
   refreshToken
 };
